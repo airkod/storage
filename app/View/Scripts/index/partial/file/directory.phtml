@@ -1,0 +1,39 @@
+<div class="panel panel-default bmd-card">
+  <div class="panel-body bmd-card-image">
+    <span class="label label-primary">
+      <?php echo $this->file['mime']; ?>
+    </span>
+    <div data-type="<?php echo $this->file['mime']; ?>" class="background-image bmd-ripple image" data-navigate="<?php echo $this->file['path']; ?>">
+      <i class="bmd-icon material-icons bmd-text-amber">folder</i>
+    </div>
+    <figcaption class="bmd-card-caption">
+      <div class="row">
+        <div class="col-xs-8">
+          <h6><?php echo $this->file['name']; ?></h6>
+        </div>
+        <div class="col-xs-4">
+          <div class="bmd-fab-speed-dial-container pull-right">
+            <a class="bmd-fab-speed-dialer spin btn btn-primary bmd-ripple bmd-fab bmd-floating bmd-fab-sm">
+              <span class="bmd-icon in flaticon-show8"></span>
+              <span class="bmd-icon out flaticon-close47"></span>
+            </a>
+            <ul class="bmd-fab-speed-dial-list up">
+              <li>
+                <a data-delete-folder="<?php echo $this->file['path']; ?>" class="btn btn-danger bmd-ripple bmd-fab bmd-fab-sm bmd-floating">
+                  <span class="bmd-icon material-icons">delete</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <span class="text-muted">
+            <small>
+              <?php echo date('d.m.Y H:i', $this->file['time']); ?>
+            </small>
+          </span>
+        </div>
+      </div>
+    </figcaption>
+  </div>
+</div>

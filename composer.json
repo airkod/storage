@@ -1,0 +1,22 @@
+{
+  "name": "airkod/storage",
+  "authors": [
+    {
+      "name": "Edward Komissarov",
+      "email": "execrot@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/airkod/light.git"
+    }
+  ],
+  "require": {
+    "airkod/light": "dev-master",
+    "ralouphie/mimey": "*",
+    "gumlet/php-image-resize": "1.9.*",
+    "ext-fileinfo": "*",
+    "ext-gd": "*"
+  }
+}

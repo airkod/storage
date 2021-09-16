@@ -1,0 +1,28 @@
+<?php
+
+$config = \Light\Front::getInstance()->getConfig()['fs'];
+
+$files = array_map(function ($item) use ($config) {
+  return [
+    'name' => basename($item),
+    'path' => substr(realpath($item), strlen(realpath($config['path']))),
+    'time' => filemtime(realpath($item)),
+    'mime' => mime_content_type(realpath($item))
+  ];
+}, glob($config['path'] . $this->path . '/*', GLOB_ONLYDIR));
+
+?>
+
+<ul class="bmd-treeview bmd-treeview-primary">
+  <?php foreach ($files as $file) : ?>
+    <?php if ($file['mime'] == 'directory') : ?>
+      <li class="bmd-treeview-root" data-expanded-icon="flaticon-round56" data-collapsed-icon="flaticon-add182" data-item-icon="flaticon-google134">
+        <a class="collapsed" data-toggle="collapse" aria-expanded="false">
+          <span data-tree="<?php echo $file['path']; ?>" class="bmd-treeview-collapsed flaticon-add182"></span>
+          <span data-tree="<?php echo $file['path']; ?>" class="bmd-treeview-expanded flaticon-round56"></span>
+          <span data-navigate="<?php echo $file['path']; ?>"><?php echo $file['name']; ?></span>
+        </a>
+      </li>
+    <?php endif; ?>
+  <?php endforeach; ?>
+</ul>

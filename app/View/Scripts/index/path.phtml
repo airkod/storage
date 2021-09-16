@@ -1,0 +1,32 @@
+<?php
+
+$rPath = [[
+  'name' => 'Home',
+  'path' => '/'
+]];
+$path = [];
+
+$currentPath = array_filter(explode('/', $this->path));
+
+foreach ($currentPath as $index => $part) {
+  $path[] = $part;
+  $rPath[] = [
+    'name' => $part,
+    'path' => '/' . implode('/', $path)
+  ];
+}
+
+?>
+
+<ul class="breadcrumb bmd-state-primary">
+  <?php foreach ($rPath as $index => $part) : ?>
+
+    <?php if ($index + 1 == count($rPath)) : ?>
+      <li class="active"><?php echo $part['name']; ?></li>
+
+    <?php else : ?>
+      <li><a data-navigate="<?php echo $part['path']; ?>"><?php echo $part['name']; ?></a></li>
+
+    <?php endif; ?>
+  <?php endforeach; ?>
+</ul>

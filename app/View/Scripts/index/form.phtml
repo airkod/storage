@@ -1,0 +1,49 @@
+<div class="bmd-component form" data-form="true">
+  <div class="form-group">
+    <div class="input-group header">
+      <span class="input-group-addon bmd-addon">
+        <i class="fa fa-search bmd-text-primary"></i>
+      </span>
+      <form class="bmd-field-group" data-search-form="true">
+        <input type="text" class="bmd-input" required="" name="query">
+        <i data-reset-search="true" class="bmd-icon material-icons">close</i>
+        <span class="bmd-bar"></span>
+        <label class="bmd-label">Search</label>
+      </form>
+      <span class="input-group-btn">
+        <div class="bmd-fab-speed-dial-container">
+          <a class="bmd-fab-speed-dialer spin btn btn-primary btn-sm bmd-ripple bmd-fab bmd-floating">
+            <span class="bmd-icon in flaticon-add180"></span>
+            <span class="bmd-icon out flaticon-close47"></span>
+          </a>
+          <ul class="bmd-fab-speed-dial-list">
+            <li>
+              <a data-upload="folder" class="btn btn-default bmd-ripple bmd-fab bmd-fab-sm bmd-floating">
+                <span class="bmd-icon flaticon-folder215"></span>
+              </a>
+            </li>
+            <li>
+              <a data-upload="file" class="btn btn-default bmd-ripple bmd-fab bmd-fab-sm bmd-floating">
+                <span class="bmd-icon material-icons">insert_drive_file</span>
+                <form enctype="multipart/form-data"
+                      target="upload"
+                      data-form-file="true"
+                      action="/fs/uploadFile?key=<?php echo \Light\Cookie::get('authorized'); ?>"
+                      method="post">
+                  <input type="file" multiple="multiple" name="files[]"/>
+                  <input type="hidden" name="path" value="/"/>
+                </form>
+                <iframe onload="uploadFileComplete()" class="hidden" name="upload"></iframe>
+              </a>
+            </li>
+            <li>
+              <a data-upload="url" class="btn btn-default bmd-ripple bmd-fab bmd-fab-sm bmd-floating">
+                <span class="bmd-icon material-icons">http</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>

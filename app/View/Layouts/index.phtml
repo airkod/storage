@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+  <base href="<?php echo \Light\Front::getInstance()->getConfig()['fs']['base']; ?>"/>
+  <?php echo $this->asset([
+
+    'libraries/bmd/css/bootstrap.min.css',
+    'libraries/font-awesome/css/font-awesome.css',
+
+    'libraries/bmd/css/flaticon.css',
+    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'libraries/bmd/css/prettify.css',
+    'libraries/bmd/css/main.min.css',
+
+    'css/bmd-additional.css',
+    'css/general.css',
+
+    'libraries/jquery/jquery.min.js',
+    'libraries/bootstrap/js/bootstrap.min.js',
+
+    'libraries/bmd/js/moment.min.js',
+    'libraries/bmd/js/bootstrap-material-datetimepicker-customized.js',
+    'libraries/bmd/js/jquery.easing.min.js',
+    'libraries/bmd/js/prettify.js',
+    'libraries/bmd/js/main.min.js',
+
+    'js/modals.js',
+    'js/loader.js',
+    'js/script.js',
+  ]); ?>
+  <title>Storage</title>
+  <script>window.key = '<?php echo \Light\Cookie::get('authorized'); ?>';</script>
+</head>
+<body>
+<script type="text/html" id="modal-template">
+  <div class="modal" id="modal">
+    <div class="modal-dialog bmd-modal-dialog">
+      <div class="modal-content bmd-border-primary">
+        <div class="modal-header bmd-bg-primary">
+          <button type="button" class="close btn-link bmd-flat-btn bmd-flat-btn-light" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title bmd-text-blue-100"></h4>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer bmd-border-blue-100">
+          <button type="button" class="btn bmd-ripple bmd-floating"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/html" id="folder-upload">
+  <form data-create-folder-form="true">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <div class="bmd-field-group">
+            <input type="text" class="bmd-input" required="true" name="name"/>
+            <span class="bmd-bar"></span>
+            <label class="bmd-label">Folder name</label>
+            <span class="bmd-field-feedback"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 error" style="display: none;">
+        <div class="alert alert-dismissible alert-danger">
+          Check please folder name.<br>
+          Folder name must not contain the next characters: \ / : * ? " < > |
+        </div>
+      </div>
+      <div class="col-xs-12 text-right">
+        <button type="submit" class="btn btn-primary bmd-ripple">Create</button>
+      </div>
+    </div>
+  </form>
+</script>
+<script type="text/html" id="file-url-upload">
+  <form data-upload-by-url-form="true">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <div class="bmd-field-group">
+            <input type="text" class="bmd-input" required="true" name="url"/>
+            <span class="bmd-bar"></span>
+            <label class="bmd-label">URL</label>
+            <span class="bmd-field-feedback"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 error" style="display: none;">
+        <div class="alert alert-dismissible alert-danger">
+          Error getting data by url
+        </div>
+      </div>
+      <div class="col-xs-12 text-right">
+        <button type="submit" class="btn btn-primary bmd-ripple">Upload</button>
+      </div>
+    </div>
+  </form>
+</script>
+<div class="loader"><i class="fa fa-spinner fa-spin text-primary"></i></div>
+<div class="main">
+  <div class="block white bmd-floating">
+    <div class="row">
+      <div class="col-xs-12">
+        <?php echo $this->partial('index/form'); ?>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <?php echo $this->getContent(); ?>
+</div>
+</body>
+</html>

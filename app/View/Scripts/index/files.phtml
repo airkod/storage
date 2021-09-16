@@ -1,0 +1,39 @@
+<?php
+
+$config = \Light\Front::getInstance()->getConfig()['fs'];
+
+$files = array_map(function ($item) use ($config) {
+  return [
+    'name' => basename($item),
+    'path' => substr(realpath($item), strlen(realpath($config['path']))),
+    'time' => filemtime(realpath($item)),
+    'mime' => mime_content_type(realpath($item)),
+    'url' => $config['url'] . substr(realpath($item), strlen(realpath($config['path'])))
+  ];
+}, glob($config['path'] . $this->path . '/*', GLOB_NOSORT));
+
+?>
+
+<div class="row">
+  <?php foreach ($files as $file) : ?>
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+
+      <?php if ($file['mime'] == 'directory') : ?>
+        <?php echo $this->partial('index/partial/file/directory', ['file' => $file]); ?>
+
+      <?php elseif (in_array($file['mime'], ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'])) : ?>
+        <?php echo $this->partial('index/partial/file/image', ['file' => $file]); ?>
+
+      <?php elseif ($file['mime'] == 'application/pdf') : ?>
+        <?php echo $this->partial('index/partial/file/pdf', ['file' => $file]); ?>
+
+      <?php elseif ($file['mime'] == 'text/plain') : ?>
+        <?php echo $this->partial('index/partial/file/text', ['file' => $file]); ?>
+
+      <?php else : ?>
+        <?php echo $this->partial('index/partial/file/file', ['file' => $file]); ?>
+
+      <?php endif; ?>
+    </div>
+  <?php endforeach; ?>
+</div>

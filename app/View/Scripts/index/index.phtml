@@ -1,0 +1,12 @@
+<div class="main">
+  <div id="treeview-sidebar-primary" class="bmd-sidebar bmd-sidebar-primary bmd-sidebar-left bmd-sidebar-collapse">
+    <?php echo $this->partial('index/tree'); ?>
+  </div>
+  <div class="bmd-page-container" data-container="true">
+    <?php echo $this->partial('index/update', $this->getVars()); ?>
+  </div>
+  <a class="bmd-sidebar-toggle bmd-sidebar-toggle-primary" data-sidebar-toggle="true">
+    <i class="flaticon-menu55"></i>
+    <i class="flaticon-close47"></i>
+  </a>
+</div>

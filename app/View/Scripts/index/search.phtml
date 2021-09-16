@@ -1,0 +1,28 @@
+<div class="container">
+  <ul class="breadcrumb bmd-state-primary">
+    <li class="active">Searching: <?php echo $this->query; ?></li>
+  </ul>
+  <div class="row">
+    <?php foreach ($this->files as $file) : ?>
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+
+        <?php if ($file['mime'] == 'directory') : ?>
+          <?php echo $this->partial('index/partial/file/directory', ['file' => $file]); ?>
+
+        <?php elseif (in_array($file['mime'], ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'])) : ?>
+          <?php echo $this->partial('index/partial/file/image', ['file' => $file]); ?>
+
+        <?php elseif ($file['mime'] == 'application/pdf') : ?>
+          <?php echo $this->partial('index/partial/file/pdf', ['file' => $file]); ?>
+
+        <?php elseif ($file['mime'] == 'text/plain') : ?>
+          <?php echo $this->partial('index/partial/file/text', ['file' => $file]); ?>
+
+        <?php else : ?>
+          <?php echo $this->partial('index/partial/file/file', ['file' => $file]); ?>
+
+        <?php endif; ?>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</div>
